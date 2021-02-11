@@ -26,13 +26,12 @@ df %>% filter(harvard_org == FALSE) %>% summarize(avg = mean(current_approval_am
 # that seems high, but it's hard to say - we want to condition on a few things
 
 # let's get the conditional means: we could do a t test:
-t.test(current_approval_amount ~ harvard_org, data = df)
+# eg via: t.test(x ~ y, data = df)
 
 # but regression makes our job simple 
-lm_robust(current_approval_amount ~ harvard_org, data = df) # these look similar!
+# eg via lm_robust( , data = df) # how does this compare?
 
 # let's add some covariates
-lm_robust(current_approval_amount ~ harvard_org + jobs_reported, fixed_effects = ~ naics_code, data = df)
 
 # now try for harvard student-founded orgs
 # or, look at avg payroll, or try something entirely different!
